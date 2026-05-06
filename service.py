@@ -21,9 +21,7 @@ from config import (
 
 
 def get_random_string(length):
-    # Выбираем буквы из набора (строчные + заглавные)
     letters = string.ascii_letters
-    # Генерация строки
     result_str = "".join(random.choice(letters) for i in range(length))
     return result_str
 
@@ -35,7 +33,6 @@ class XUIService:
         )
         self.api.login()
 
-    # ===== CLIENT SEARCH =====
 
     def get_inbound(self) -> Inbound:
         return self.api.inbound.get_by_id(INBOUND_ID)
@@ -105,8 +102,13 @@ class XUIService:
     def update_user(self, user: Client):
         print(user.id)
         id = str(uuid.uuid4())
-        new_client = self.api.client.get_by_email(user.email)
-        new_client.expiry_time = new_client.expiry_time + 2678400000
+        new_client: Client | None = self.api.client.get_by_email(user.email)
+        if new_client is None:
+            raise Exception("User in not found")
+        if new_client.expiry_time < int(time.time() * 1000):
+            new_client.expiry_time = int(time.time() * 1000) + 2678400000 
+        else:
+            new_client.expiry_time = new_client.expiry_time + 2678400000
         new_client.id = id
         new_client.comment = user.sub_id
 
