@@ -76,10 +76,13 @@ class XUIService:
 
         return None
 
-    def add_user(self, inbound_id: int, sub_id: str, comment: str) -> Dict | None:
+    def add_user(self, inbound_id: int, sub_id: str, comment: str, endless: bool = False) -> Dict | None:
         id = str(uuid.uuid4())
         email = str(uuid.uuid4())
-        extiry_time = int(time.time() * 1000) + 259200000
+        if endless:
+            extiry_time = 0
+        else:
+            extiry_time = int(time.time() * 1000) + 259200000
         try:
             new_client = Client(
                 email=email,

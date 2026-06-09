@@ -33,37 +33,30 @@ def main():
                     f"{c.email}{" " * (38 - len(c.email))}| [bold]{time_left}[/bold] | Sub ID: [red]{c.comment} [/red]"
                 )
 
-        elif choice == "2":
-            inbounds = service.get_inbounds()
-
-            for inbound in inbounds:
-                print(f"\nПорт работы инбаунда - [bold blue]{inbound.port}[/bold blue]")
-                print(f"{'-'*80}")
-                for c in inbound.settings.clients:
-                    time_left = time_message(c.expiry_time)
-                    print(
-                        f"{c.email}{" " * (38 - len(c.email))}| [bold]{time_left}[/bold] | Sub ID: [red]{c.sub_id} [/red]"
-                    )
 
         elif choice == "3":
             name = input(
                 "Введите имя пользователя, которое будет использоваться для sub_id и comment: "
             )
-            inbound_id = int(input("Введите inbound_id: "))
-            result = service.add_user(inbound_id=inbound_id, sub_id=name, comment=name)
-            print(result)
+            for inbound_id in service.get_inbounds_ids():
+                service.add_user(
+                    inbound_id=inbound_id, sub_id=name, comment=name, endless=True
+                )
+
+            print(f"Ссылка на активацию подписки\n{'-'*20}")    
+            print(f"https://nov.tmpan.ru:1339/subscription/{name}\n{'-'*20}")
 
         elif choice == "4":
             name = input(
                 "Введите имя пользователя, которое будет использоваться для sub_id и comment: "
             )
             for inbound_id in service.get_inbounds_ids():
-                result = service.add_user(
+                service.add_user(
                     inbound_id=inbound_id, sub_id=name, comment=name
                 )
 
             print(f"Ссылка на активацию подписки\n{'-'*20}")    
-            print(f"https://tmpan.ru:1339/sub/{name}\n{'-'*20}")
+            print(f"https://nov.tmpan.ru:1339/subscription/{name}\n{'-'*20}")
 
         elif choice == "5":
             name = input(
