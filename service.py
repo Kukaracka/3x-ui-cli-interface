@@ -10,10 +10,10 @@ from py3xui import Api, Client, Inbound
 
 from config import (
     HOST,
-    INBOUND_ID,
     PASSWORD,
     USERNAME,
     VERIFY_SSL,
+    INBOUND_ID,
     #     XUI_EXTERNAL_IP,
     #     SERVER_PORT,
     #     MAIN_REMARK,

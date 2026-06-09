@@ -1,7 +1,8 @@
 from service import XUIService
 from rich import print
 import time
-from ui import input_email, menu
+from ui import menu
+from config import HOST_SUB
 
 def contains_substring(substring, string):
     return substring.casefold() in string.casefold()
@@ -34,7 +35,7 @@ def main():
                 )
 
 
-        elif choice == "3":
+        elif choice == "2":
             name = input(
                 "Введите имя пользователя, которое будет использоваться для sub_id и comment: "
             )
@@ -44,9 +45,9 @@ def main():
                 )
 
             print(f"Ссылка на активацию подписки\n{'-'*20}")    
-            print(f"https://nov.tmpan.ru:1339/subscription/{name}\n{'-'*20}")
+            print(f"{HOST_SUB}{name}\n{'-'*20}")
 
-        elif choice == "4":
+        elif choice == "3":
             name = input(
                 "Введите имя пользователя, которое будет использоваться для sub_id и comment: "
             )
@@ -58,7 +59,7 @@ def main():
             print(f"Ссылка на активацию подписки\n{'-'*20}")    
             print(f"https://nov.tmpan.ru:1339/subscription/{name}\n{'-'*20}")
 
-        elif choice == "5":
+        elif choice == "4":
             name = input(
                 "Введите sub_id пользователя, который будет удален из всех инбаундов: "
             )
@@ -67,7 +68,7 @@ def main():
                 print(inbound_id, uids[f"{inbound_id}"])
                 service.remove_user(inbound_id=inbound_id, uuid=uids[f"{inbound_id}"])
 
-        elif choice == "6":
+        elif choice == "5":
             name = input(
                 "Введите имя пользователя, которому вы хотите продлить время: "
             )
@@ -75,7 +76,7 @@ def main():
             for user in users:
                 service.update_user(user)
 
-        elif choice == "7":
+        elif choice == "6":
             name = input(
                 "Введите имя пользователя, которого хотите найти: "
             )
