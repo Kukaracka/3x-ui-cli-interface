@@ -1,40 +1,74 @@
-## Небольшой скрипт для взаимодействия с 3x-ui панелью через api. 
+# 3x-ui CLI Interface
 
-### Локальный запуск
+Небольшое консольное приложение для взаимодействия с панелью **3x-ui** через API.
 
-Склонировать репозиторий
+## Установка и запуск
 
-`git clone git@github.com:Kukaracka/3x-ui-cli-interface.git`
+### 1. Клонирование репозитория
 
-Перейти в папку 
+```bash
+git clone git@github.com:Kukaracka/3x-ui-cli-interface.git
+cd 3x-cli-interface
+```
 
-`cd 3x-cli-interface`
+### 2. Настройка переменных окружения
 
-Создать файл .env
+Создайте файл `.env` на основе шаблона:
 
-`cp ./.env.example ./.env`
+```bash
+cp .env.example .env
+```
 
-И заполнить его вашими данными с доступом в 3x-ui панель
+Заполните файл своими данными для доступа к панели **3x-ui**.
 
-Создать виртуальное окружение python и активировать
+### 3. Создание виртуального окружения
 
-`python -m venv .venv`
+```bash
+python -m venv .venv
+```
 
-Windows:
+Активируйте окружение:
 
-`.venv\Scripts\activate.bat`
+**Windows**
 
-Linux:
+```bat
+.venv\Scripts\activate.bat
+```
 
-`source .venv/bin/activate`
+**Linux / macOS**
 
-Установить зависимости 
+```bash
+source .venv/bin/activate
+```
 
-`pip install -r requirements.txt`
+### 4. Установка зависимостей
 
-Запустить консольное приложение 
+```bash
+pip install -r requirements.txt
+```
 
-`python -m main`
+### 5. Запуск приложения
 
+```bash
+python -m main
+```
 
+## Требования
 
+* Python 3.10+
+* Доступ к панели 3x-ui
+* Корректно заполненный файл `.env`
+
+## Структура запуска
+
+```text
+git clone
+    ↓
+настройка .env
+    ↓
+создание venv
+    ↓
+установка зависимостей
+    ↓
+запуск приложения
+```
